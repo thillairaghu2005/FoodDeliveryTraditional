@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Tamil Nadu Traditional Food</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script defer src="firebase-config.js"></script>
+</head>
+<body>
+    <div id="signup-form">
+        <h2>Sign Up</h2>
+        <input type="text" id="name" placeholder="Full Name">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <input type="tel" id="phone" placeholder="Phone Number">
+        <textarea id="address" placeholder="Delivery Address"></textarea>
+        <button onclick="handleSignUp()">Sign Up</button>
+
+    </div>
+  
+  <!-- OTP Verification (for phone auth) -->
+  <div id="otp-verification" style="display:none;">
+    <h2>Verify OTP</h2>
+    <input type="text" id="otp" placeholder="Enter OTP">
+    <button onclick="verifyOTP()">Verify</button>
+  </div>
+  
+  <!-- Order History Display -->
+  <div id="order-history">
+    <h2>Your Orders</h2>
+    <div id="orders-list"></div>
+  </div>
+
+    <script>
+        function signup() {
+            var email = document.getElementById("signup-email").value;
+            var password = document.getElementById("signup-password").value;
+
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    alert("Signup Successful! Please login.");
+                    window.location.href = "login.html";
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        }
+    </script>
+</body>
+</html>
